@@ -5,11 +5,11 @@ Class Male implements \pattern\strategy\Strategy
 {
 	function showAd()
 	{
-		echo "show a Male AD";
+		echo "show a Male AD<br>";
 	}
 
 	function showCategory()
 	{
-		echo "show a Male category";
+		echo "show a Male category<br>";
 	}
 }

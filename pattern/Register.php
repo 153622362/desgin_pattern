@@ -3,6 +3,7 @@ namespace pattern;
 
 /**
 *注册树模式
+*全局调用对象
 */
 
 Class Register
@@ -19,7 +20,7 @@ Class Register
 
 	static function get($name)
 	{
-		return self::$objects[$name];
+		return @self::$objects[$name]; //@停止报错
 	}
 	/**
 	*从树上卸除

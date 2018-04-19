@@ -22,7 +22,7 @@ Class Database
 		if (self::$db_obj) {
 			return self::$db_obj;
 		}else{
-			self::$db_obj = new self();
+			self::$db_obj = new db\Mysqli();
 			return self::$db_obj;
 		}
 	}
