@@ -10,11 +10,8 @@ Class User
 	protected $db;
 	public function __construct($id)
 	{
-		$this->db = new db\PDO();
-		$this->db->connect('localhost','root','root','test');
-		$sql = "select * from users where id = {$id}";
-		$res = $this->db->query($sql);
-		$result = $res->fetch(\PDO::FETCH_ASSOC);
+		$this->db = \pattern\Factory::createDb();
+		$result = mysqli_fetch_assoc($this->db->query("select * from users where id = {$id}"));
 		$this->id = $result['id'];
 		$this->rname = $result['rname'];
 		$this->created_at = $result['created_at'];

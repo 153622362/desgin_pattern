@@ -7,9 +7,7 @@ Class PDO implements InterDatabase
 	protected $conn;
 	function connect($host, $user, $pass, $dbname)
 	{
-		$conn = new \PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-
-		$this->conn = $conn;
+		 $this->conn = new \PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 	}
 
 	function query($sql)

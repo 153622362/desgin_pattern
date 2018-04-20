@@ -1,28 +1,34 @@
 <?php
-
+// error_reporting(0);
 define('BASEDIR', __DIR__);
 include BASEDIR.'/Loader.php';
 spl_autoload_register('\\Loader\\Loader::autoload'); //自动加载
 //配置文件
 $config = new \config\Config(__DIR__.'/config');
 pattern\Register::set('config',$config['database']);
+// $req = require './config/database.php';
+
+
 
 //单例模式
 $obj = database\Database::getInstance();
-$res = $obj->query('select id,rname from users limit 1');
+$res = $obj->query('show full fields  from users');
 $res = mysqli_fetch_array($res);
+
 //工厂后
 $obj2 = pattern\Factory::createDb(); //这样修改代码则不用修改多处的麻烦
 
 //注册树模式
 $obj3 = pattern\Register::get('db');
 
+
 //适配器模式
 $db = new database\db\PDO();
-$res1 = $db->connect('localhost','root','root','test');
+$res1 = $db->connect('127.0.0.1','root','root','test');
 $sql = 'select * from objects';
 $res = $db->query($sql);
 $db->close();
+
 
 
 //策略模式
@@ -49,6 +55,8 @@ $strategy2 = new pattern\strategy\Male();
 $obj->setStrategy($strategy2);
 $obj->show();
 
+
+
 // ORM+工厂+注册树
 Class ORMUser
 {
@@ -71,6 +79,8 @@ Class ORMUser
 $orm = new ORMUser();
 $orm->index();
 
+
+
 //观察者模式
 Class Event extends pattern\Observer\EventGenerator
 {
@@ -80,6 +90,8 @@ Class Event extends pattern\Observer\EventGenerator
 		$this->notify();
 	}
 }
+
+
 
 // 增加观察者
 Class Observer1 implements pattern\Observer\Observer
@@ -105,11 +117,14 @@ $event->addObserver($observer2);
 
 $event->trigger();
 
+
+
 //原型模式---节约资源 譬如有一个大对象new出来会消耗很多资源，如需多次new则耗大量资源 不如clone划算
 $prototype = new Page(); //随便一个类都可以
 // 进行一些列初始化
 //对对象进行克隆
 $clone_obj = clone $prototype;
+
 
 
 //装饰器模式
@@ -177,11 +192,14 @@ $human->addDecorator($sing_decorator);
 $human->eat();
 
 
+
 //迭代器模式
 $users = new \pattern\Iterator();
 foreach ($users as $user) {
 	var_dump($user);
 }
+
+
 
 // 代理模式 实现读写分离的思路
 $id =1;
@@ -190,3 +208,8 @@ $proxy = new \pattern\proxy\Proxy();
 $proxy->getUserName($id);
 $proxy->setUserName($id,$name);
 
+$index = new model\Index();
+$obj = $index->findById(3);
+$obj->rname = 'jw';
+var_dump($index->rname);
+$index->save();

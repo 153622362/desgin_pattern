@@ -11,16 +11,16 @@ Class Mysqli implements InterDatabase
 		$this->connect($config['host'],$config['username'],$config['password'],$config['dbname']);
 	}
 
+
 	function connect($host, $user, $pass, $dbname)
 	{
-		$conn = mysqli_connect($host, $user, $pass, $dbname);
-		$this->conn = $conn;
+		$this->conn = mysqli_connect($host, $user, $pass, $dbname);
 	}
 
-	function query($sql)
+	function query($sql='')
 	{
-		$res = mysqli_query($this->conn, $sql);
-		return $res;
+		return mysqli_query($this->conn, $sql);
+		
 	}
 
 	function close()

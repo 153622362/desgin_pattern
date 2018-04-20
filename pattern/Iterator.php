@@ -9,8 +9,7 @@ class Iterator implements \Iterator
 
     function __construct()
     {
-        $db = new \database\db\Mysqli();
-        $db->connect('localhost','root','root','test');
+        $db = \pattern\Factory::createDb();
         $result = $db->query("select id from users");
         $this->ids = $result->fetch_all(MYSQLI_ASSOC);
     }

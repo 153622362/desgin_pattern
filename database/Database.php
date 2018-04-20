@@ -19,12 +19,16 @@ Class Database
 	*/
 	static function getInstance()
 	{
+		$config = \pattern\Register::get('config'); // \表示从根目录开始 没有则表示从当前命名空间下去寻找；
+		$db = $config['db_file_load'] . $config['connect_type'];
+		$db = empty($db)?'\database\db\Mysqli':$db;
 		if (self::$db_obj) {
 			return self::$db_obj;
 		}else{
-			self::$db_obj = new db\Mysqli();
+			self::$db_obj = new $db();
 			return self::$db_obj;
 		}
+
 	}
 
 	public function where()
