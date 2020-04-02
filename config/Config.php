@@ -1,7 +1,7 @@
 <?php
 namespace config;
 
-class Config implements \ArrayAccess
+class Config implements \ArrayAccess //这个是PHP自定义的接口
 {
     protected $path;
     protected $configs = array();

@@ -1,5 +1,8 @@
 <?php
 namespace database\db;
+
+
+
 // 适配器模式--适配各种数据库
 interface InterDatabase
 {

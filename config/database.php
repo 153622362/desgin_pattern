@@ -1,9 +1,9 @@
 <?php
 $config = [
-	'host'=>'127.0.0.1',
+	'host'=>'192.168.199.101',
 	'username'=>'root',
 	'password'=>'root',
-	'dbname' => 'test',
+	'dbname' => 't1',
 	'connect_type' => 'Mysqli',
 	'db_file_load' => '\database\db\\'
 ];

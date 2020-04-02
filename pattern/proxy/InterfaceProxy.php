@@ -3,6 +3,6 @@ namespace pattern\proxy;
 
 interface InterfaceProxy
 {
-	public function getUserName($id);
-	public function setUserName($id,$name);
+	public function get($id);
+	public function set($id,$name);
 }

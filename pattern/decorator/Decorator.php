@@ -1,5 +1,6 @@
 <?php
-namespace pattern;
+namespace pattern\decorator;
+
 interface Decorator
 {
 	 function beforeDo();

@@ -1,19 +1,25 @@
 <?php
 namespace pattern\proxy;
 
+use pattern\Factory;
+use pattern\Register;
+
 Class Proxy implements InterfaceProxy
 {
-	public function getUserName($id)
+	public function get($id)
 	{
-		$db = \pattern\Factory::createDb();  //假设是读库
+        //假设是读库
+		$db = Factory::getDb();
 		$sql = "select * from users where id = {$id}";
 		$db->query($sql);
 
 	}
-	public function setUserName($id,$name)
+	public function set($id,$name)
 	{
-		$db = new \database\db\Mysqli();  //假设是写库
-		$db->connect('127.0.0.1','root','root','test');
+        //假设是写库
+		$db = new \database\db\Mysqli();
+        $database_config = Register::get('database');
+		$db->connect($database_config['host'],$database_config['username'],$database_config['password'],$database_config['dbname']);
 		$sql = "update users set rname = '{$name}'";
 		$db->query($sql);
 	}

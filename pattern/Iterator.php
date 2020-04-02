@@ -9,25 +9,25 @@ class Iterator implements \Iterator
 
     function __construct()
     {
-        $db = \pattern\Factory::createDb();
-        $result = $db->query("select id from users");
-        $this->ids = $result->fetch_all(MYSQLI_ASSOC);
+        $db = \pattern\Factory::getDb();
+        $result = $db->query("select * from users");
+        $this->data = $result->fetch_all(MYSQLI_ASSOC);
     }
 
     function current()
     {
-        $id = $this->ids[$this->index]['id'];
+        $id = $this->data[$this->index];
         return $id;
     }
 
     function next()
     {
-        $this->index ++;
+        $this->index++;
     }
 
     function valid()
     {
-        return $this->index < count($this->ids);
+        return $this->index < count($this->data);
     }
 
     function rewind()
